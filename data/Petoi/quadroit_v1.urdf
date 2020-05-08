@@ -4,34 +4,12 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="quadroit_v1">
-  <link
-    name="map">
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="meshes/base_link_torso.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="1 0.95686 0.93725 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="meshes/base_link_torso.STL" />
-      </geometry>
-    </collision>
-  </link>
+  
   <link
     name="torso">
+    <contact>
+      <lateral_friction value="1"/>
+    </contact>
     <inertial>
       <origin
         xyz="0 1.8746E-05 -0.0070117"

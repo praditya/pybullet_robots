@@ -5,7 +5,7 @@ import numpy as np
 # load Nybble with dimensions
 import os
 import sys
-sys.path.append('/media/aditya/Work/THESIS/MT_Thesis/Quadruped/Pybullet/pybullet_robots/data/quadroit')
+sys.path.append('/media/aditya/Work/THESIS/MT_Thesis/Quadruped/Pybullet/pybullet_robots/data/Petoi')
 from Instinct import *
 
 p.connect(p.GUI)
@@ -15,7 +15,7 @@ p.setTimeStep(1./500)
 #p.setDefaultContactERP(0)
 #urdfFlags = p.URDF_USE_SELF_COLLISION+p.URDF_USE_SELF_COLLISION_EXCLUDE_ALL_PARENTS 
 urdfFlags = p.URDF_USE_SELF_COLLISION
-quadruped = p.loadURDF("quadroit/quadv1.urdf",[0,0,.5],[0,0,0.5,0], flags = urdfFlags,useFixedBase=False)
+quadruped = p.loadURDF("Petoi/nybble.urdf",[0,0,.5],[0,0,0.5,0], flags = urdfFlags,useFixedBase=False)
 
 #enable collision between lower legs
 
