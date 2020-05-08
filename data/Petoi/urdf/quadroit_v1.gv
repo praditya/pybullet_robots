@@ -1,0 +1,53 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"hip_link_lb" [label="hip_link_lb"];
+"thigh_link_lb" [label="thigh_link_lb"];
+"shank_link_lb" [label="shank_link_lb"];
+"foot_link_lb" [label="foot_link_lb"];
+"hip_link_lf" [label="hip_link_lf"];
+"thigh_link_lf" [label="thigh_link_lf"];
+"shank_link_lf" [label="shank_link_lf"];
+"foot_link_lf" [label="foot_link_lf"];
+"hip_link_rb" [label="hip_link_rb"];
+"thigh_link_rb" [label="thigh_link_rb"];
+"shank_link_rb" [label="shank_link_rb"];
+"foot_link_rb" [label="foot_link_rb"];
+"hip_link_rf" [label="hip_link_rf"];
+"thigh_link_rf" [label="thigh_link_rf"];
+"shank_link_rf" [label="shank_link_rf"];
+"foot_link_rf" [label="foot_link_rf"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "hip_joint_lb" [label="xyz: -0.3 0.21 0 \nrpy: 0 1.5708 -4.63268e-05"]
+"hip_joint_lb" -> "hip_link_lb"
+"hip_link_lb" -> "elbow_joint_lb" [label="xyz: 0.08 0 0 \nrpy: 1.57075 -0 0"]
+"elbow_joint_lb" -> "thigh_link_lb"
+"thigh_link_lb" -> "wrist_joint_lb" [label="xyz: 0.2 0 0 \nrpy: 0 -0 0"]
+"wrist_joint_lb" -> "shank_link_lb"
+"shank_link_lb" -> "foot_lb" [label="xyz: 0.23 0 0 \nrpy: 0 -0 0"]
+"foot_lb" -> "foot_link_lb"
+"base_link" -> "hip_joint_lf" [label="xyz: 0.3 0.21 0 \nrpy: 0 1.5708 -4.63268e-05"]
+"hip_joint_lf" -> "hip_link_lf"
+"hip_link_lf" -> "elbow_joint_lf" [label="xyz: 0.08 0 0 \nrpy: 1.57075 -0 0"]
+"elbow_joint_lf" -> "thigh_link_lf"
+"thigh_link_lf" -> "wrist_joint_lf" [label="xyz: 0.2 0 0 \nrpy: 0 -0 0"]
+"wrist_joint_lf" -> "shank_link_lf"
+"shank_link_lf" -> "foot_lf" [label="xyz: 0.23 0 0 \nrpy: 0 -0 0"]
+"foot_lf" -> "foot_link_lf"
+"base_link" -> "hip_joint_rb" [label="xyz: -0.3 -0.21 0 \nrpy: 0 1.5708 -4.63268e-05"]
+"hip_joint_rb" -> "hip_link_rb"
+"hip_link_rb" -> "elbow_joint_rb" [label="xyz: 0.08 0 0 \nrpy: 1.57075 -0 0"]
+"elbow_joint_rb" -> "thigh_link_rb"
+"thigh_link_rb" -> "wrist_joint_rb" [label="xyz: 0.2 0 0 \nrpy: 0 -0 0"]
+"wrist_joint_rb" -> "shank_link_rb"
+"shank_link_rb" -> "foot_rb" [label="xyz: 0.23 0 0 \nrpy: 0 -0 0"]
+"foot_rb" -> "foot_link_rb"
+"base_link" -> "hip_joint_rf" [label="xyz: 0.3 -0.21 0 \nrpy: 0 1.5708 -4.63268e-05"]
+"hip_joint_rf" -> "hip_link_rf"
+"hip_link_rf" -> "elbow_joint_rf" [label="xyz: 0.08 0 0 \nrpy: 1.57075 -0 0"]
+"elbow_joint_rf" -> "thigh_link_rf"
+"thigh_link_rf" -> "wrist_joint_rf" [label="xyz: 0.2 0 0 \nrpy: 0 -0 0"]
+"wrist_joint_rf" -> "shank_link_rf"
+"shank_link_rf" -> "foot_rf" [label="xyz: 0.23 0 0 \nrpy: 0 -0 0"]
+"foot_rf" -> "foot_link_rf"
+}

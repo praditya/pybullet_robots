@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find quadroit_v1)/xacro/transmission.xacro"/>
+
+    <xacro:macro name="default_inertial" params="mass">
+        <inertial>
+            <mass value="${mass}" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="leg" params="suffix front left">
+        
+        <link name="hip_link_${suffix}">
+            <inertial>
+                <origin
+                    xyz="0.04 0 0"
+                    rpy="0 0 0" />
+                <mass
+                    value="2" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+            </inertial>
+            <visual>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                <mesh
+                    filename="package://quadroit_v1/meshes/leg_fr_hip.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.66667 0.69804 0.76863 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                <mesh
+                    filename="package://quadroit_v1/meshes/leg_fr_hip.STL" />
+                </geometry>
+            </collision>
+            <!-- <xacro:default_inertial mass="2"/> -->
+        </link>
+
+        <joint name="hip_joint_${suffix}" type="revolute">
+            <axis xyz="0 0 1"/>
+            <limit effort="1000.0" lower="${-0.5*pi}" upper="${0.5*pi}" velocity="0.5"/>
+            <parent link="torso"/>
+            <child link="hip_link_${suffix}"/>
+            <dynamics damping="${damping}" friction="${friction}"/>
+            <origin 
+                xyz="${0.5*body_len*front} ${left*0.5*body_width} 0"
+                rpy = "${0.5*pi} ${0.5*pi} ${0.5*pi}"/>
+        </joint>
+
+  
+        <link name="thigh_link_${suffix}">
+            <inertial>
+                <origin
+                    xyz="0.1 0 0"
+                    rpy="0 0 0" />
+                <mass
+                    value="2" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />        
+            </inertial>
+            <visual>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                <mesh
+                    filename="package://quadroit_v1/meshes/leg_fr_thigh.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.66667 0.69804 0.76863 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                <mesh
+                    filename="package://quadroit_v1/meshes/leg_fr_thigh.STL" />
+                </geometry>
+            </collision>
+        </link>
+                
+        <joint name="elbow_joint_${suffix}" type="revolute">
+            <axis xyz="0 0 1"/>
+            <limit effort="1000.0" lower="${-0.5*pi}" upper="${0.5*pi}" velocity="0.5"/>
+            <parent link="hip_link_${suffix}"/>
+            <child link="thigh_link_${suffix}"/>
+            <dynamics damping="${damping}" friction="${friction}"/>
+            <origin 
+                xyz="${hip_len} 0 0"
+                rpy = "${0.5*pi} 0 0"/>
+        </joint>
+    
+
+        <link name="shank_link_${suffix}">
+            <inertial>
+                <origin
+                    xyz="0.11 0 0"
+                    rpy="0 0 0" />
+                <mass
+                    value="2" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />        
+            </inertial>
+            <visual>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                <mesh
+                    filename="package://quadroit_v1/meshes/leg_fr_shank.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.66667 0.69804 0.76863 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                <mesh
+                    filename="package://quadroit_v1/meshes/leg_fr_shank.STL" />
+                </geometry>
+            </collision>
+            <!-- <xacro:default_inertial mass="2"/> -->
+        </link>
+                
+        <joint name="wrist_joint_${suffix}" type="revolute">
+            <axis xyz="0 0 1"/>
+            <limit effort="1000.0" lower="${-0.5*pi}" upper="${0.5*pi}" velocity="0.5"/>
+            <parent link="thigh_link_${suffix}"/>
+            <child link="shank_link_${suffix}"/>
+            <dynamics damping="${damping}" friction="${friction}"/>
+            <origin 
+                xyz="${thigh_len} 0 0"
+                rpy = "0 0 0"/>
+        </joint>
+
+        
+        
+        <link name="foot_link_${suffix}">
+            <visual>
+                <geometry>
+                    <sphere radius="${foot_radius}"/>
+                </geometry>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <material name="white"/>
+            </visual>
+            <xacro:default_inertial mass="0.2"/>
+        </link>
+
+        <joint name="foot_${suffix}" type="fixed">
+            <parent link="shank_link_${suffix}"/>
+            <child link="foot_link_${suffix}"/>
+            <dynamics damping="${damping}" friction="${friction}"/>
+            <origin 
+                xyz="${shank_len} 0 0"
+                rpy = "0 0 0"/>
+        </joint>
+
+        <xacro:leg_transmission suffix="${suffix}"/>
+        <!-- params or suffix -->
+    </xacro:macro>
+
+</robot>
