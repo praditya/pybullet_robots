@@ -55,12 +55,12 @@ for i in range (4):
         jointOffsets.append(dir_flag*1.57)
 
 maxForceId = p.addUserDebugParameter("maxForce",0,500,50)
-restitution = 0
+restitution_coeff = 0
 
 for j in range (p.getNumJoints(quadruped)):
         p.changeDynamics(quadruped,j,linearDamping=0, angularDamping=0)
-        p.changeDynamics(plane, -1, restitution=restitution)
-        p.changeDynamics(quadruped, -1, restitution=restitution)
+        p.changeDynamics(plane, -1, restitution=restitution_coeff)
+        p.changeDynamics(quadruped, j, restitution=restitution_coeff)
         info = p.getJointInfo(quadruped,j)
         #print(info)
         jointName = info[1]
@@ -77,8 +77,8 @@ joints=[]
 # calibration position
 # pose input
 # targetPos = float(joints[j])
-
-motion1 = instincts['trL']
+# time.sleep(1)
+motion1 = instincts['balance']
 lineiter = iter(motion1.splitlines())
 next(lineiter)
 dof_ord = [0,0,4,0,1,5,0,2,6,0,3,7]
@@ -110,7 +110,7 @@ for i in range(100):
             #print("num points=",len(pts))
             #for pt in pts:
             #	print(pt[9])
-        # time.sleep(1./20.)
+        time.sleep(1./50.)
     
     # joints=[]
 # index = 0

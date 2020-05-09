@@ -17,7 +17,7 @@
     </contact>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="10"/>
+      <mass value="0.2"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
@@ -44,7 +44,7 @@
     </contact>
     <inertial>
       <origin rpy="0 0 0" xyz="0.0004 0 0"/>
-      <mass value="2"/>
+      <mass value="0.001"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
@@ -78,7 +78,7 @@
     </contact>
     <inertial>
       <origin rpy="0 0 0" xyz="0.0225 0 0"/>
-      <mass value="2"/>
+      <mass value="0.05"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
@@ -112,7 +112,7 @@
     </contact>
     <inertial>
       <origin rpy="0 0 0" xyz="0.0275 0 0"/>
-      <mass value="2"/>
+      <mass value="0.05"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
@@ -150,7 +150,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.0"/>
+        <sphere radius="3e-6"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -159,11 +159,11 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.0003"/>
+        <sphere radius="3e-6"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.1"/>
+      <mass value="0.01"/>
       <inertia ixx="0.000025" ixy="0" ixz="0" iyy="0.000025" iyz="0" izz="0.000025"/>
     </inertial>
   </link>
@@ -180,14 +180,14 @@
       <lateral_friction value="1"/>
     </contact>
     <inertial>
-      <origin rpy="0 0 0" xyz="0.04 0 0"/>
-      <mass value="2"/>
+      <origin rpy="0 0 0" xyz="0.0004 0 0"/>
+      <mass value="0.001"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_hip.STL"/>
+        <mesh filename="meshes/leg_fr_hip.STL" scale="0.01 0.01 0.3"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -196,7 +196,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_hip.STL"/>
+        <mesh filename="meshes/leg_fr_hip.STL" scale="0.01 0.01 0.3"/>
       </geometry>
     </collision>
     <!-- <xacro:default_inertial mass="2"/> -->
@@ -207,21 +207,21 @@
     <joint_properties damping=".0" friction=".0"/>
     <parent link="base_link"/>
     <child link="hip_link_FR"/>
-    <origin rpy="1.57075 1.57075 1.57075" xyz="0.3 -0.21 0"/>
+    <origin rpy="1.57075 1.57075 1.57075" xyz="0.0675 -0.05 0"/>
   </joint>
   <link name="thigh_link_FR">
     <contact>
       <lateral_friction value="1"/>
     </contact>
     <inertial>
-      <origin rpy="0 0 0" xyz="0.1 0 0"/>
-      <mass value="2"/>
+      <origin rpy="0 0 0" xyz="0.0225 0 0"/>
+      <mass value="0.05"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_thigh.STL"/>
+        <mesh filename="meshes/leg_fr_thigh.STL" scale="0.225 0.225 0.225"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -230,7 +230,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_thigh.STL"/>
+        <mesh filename="meshes/leg_fr_thigh.STL" scale="0.225 0.225 0.225"/>
       </geometry>
     </collision>
     <!-- <xacro:default_inertial mass="2"/> -->
@@ -241,21 +241,21 @@
     <joint_properties damping=".0" friction=".0"/>
     <parent link="hip_link_FR"/>
     <child link="thigh_link_FR"/>
-    <origin rpy="1.57075 0 0" xyz="0.08 0 0"/>
+    <origin rpy="1.57075 0 0" xyz="0.0008 0 0"/>
   </joint>
   <link name="shank_link_FR">
     <contact>
       <lateral_friction value="1"/>
     </contact>
     <inertial>
-      <origin rpy="0 0 0" xyz="0.11 0 0"/>
-      <mass value="2"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
+      <mass value="0.05"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_shank.STL"/>
+        <mesh filename="meshes/leg_fr_shank.STL" scale="0.239 0.239 0.239"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -264,7 +264,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_shank.STL"/>
+        <mesh filename="meshes/leg_fr_shank.STL" scale="0.239 0.239 0.239"/>
       </geometry>
     </collision>
     <!-- <xacro:default_inertial mass="2"/> -->
@@ -275,7 +275,7 @@
     <joint_properties damping=".0" friction=".0"/>
     <parent link="thigh_link_FR"/>
     <child link="shank_link_FR"/>
-    <origin rpy="0 0 0" xyz="0.2 0 0"/>
+    <origin rpy="0 0 0" xyz="0.045 0 0"/>
   </joint>
   <link name="foot_link_FR">
     <contact>
@@ -288,7 +288,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.0"/>
+        <sphere radius="3e-6"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -297,18 +297,18 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.03"/>
+        <sphere radius="3e-6"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.1"/>
-      <inertia ixx="0.000025" ixy="0" ixz="0" iyy="0.000025" iyz="0" izz="0.000025"/>
+      <mass value="0.01"/>
+      <inertia ixx="25e-10" ixy="0" ixz="0" iyy="25e-10" iyz="0" izz="25e-10"/>
     </inertial>
   </link>
   <joint name="foot_FR" type="fixed">
     <parent link="shank_link_FR"/>
     <child link="foot_link_FR"/>
-    <origin xyz="0.23 0 0"/>
+    <origin xyz="0.055 0 0"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
 
@@ -318,14 +318,14 @@
       <lateral_friction value="1"/>
     </contact>
     <inertial>
-      <origin rpy="0 0 0" xyz="0.04 0 0"/>
-      <mass value="2"/>
+      <origin rpy="0 0 0" xyz="0.0004 0 0"/>
+      <mass value="0.001"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_hip.STL"/>
+        <mesh filename="meshes/leg_fr_hip.STL" scale="0.01 0.01 0.3"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -334,7 +334,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_hip.STL"/>
+        <mesh filename="meshes/leg_fr_hip.STL" scale="0.01 0.01 0.3"/>
       </geometry>
     </collision>
     <!-- <xacro:default_inertial mass="2"/> -->
@@ -345,21 +345,21 @@
     <joint_properties damping=".0" friction=".0"/>
     <parent link="base_link"/>
     <child link="hip_link_RL"/>
-    <origin rpy="1.57075 1.57075 1.57075" xyz="-0.3 0.21 0"/>
+    <origin rpy="1.57075 1.57075 1.57075" xyz="-0.0675 0.05 0"/>
   </joint>
   <link name="thigh_link_RL">
     <contact>
       <lateral_friction value="1"/>
     </contact>
     <inertial>
-      <origin rpy="0 0 0" xyz="0.1 0 0"/>
-      <mass value="2"/>
+      <origin rpy="0 0 0" xyz="0.0225 0 0"/>
+      <mass value="0.05"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_thigh.STL"/>
+        <mesh filename="meshes/leg_fr_thigh.STL" scale="0.225 0.225 0.225"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -368,7 +368,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_thigh.STL"/>
+        <mesh filename="meshes/leg_fr_thigh.STL" scale="0.225 0.225 0.225"/>
       </geometry>
     </collision>
     <!-- <xacro:default_inertial mass="2"/> -->
@@ -379,21 +379,21 @@
     <joint_properties damping=".0" friction=".0"/>
     <parent link="hip_link_RL"/>
     <child link="thigh_link_RL"/>
-    <origin rpy="1.57075 0 0" xyz="0.08 0 0"/>
+    <origin rpy="1.57075 0 0" xyz="0.0008 0 0"/>
   </joint>
   <link name="shank_link_RL">
     <contact>
       <lateral_friction value="1"/>
     </contact>
     <inertial>
-      <origin rpy="0 0 0" xyz="0.11 0 0"/>
-      <mass value="2"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
+      <mass value="0.05"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_shank.STL"/>
+        <mesh filename="meshes/leg_fr_shank.STL" scale="0.239 0.239 0.239"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -402,7 +402,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_shank.STL"/>
+        <mesh filename="meshes/leg_fr_shank.STL" scale="0.239 0.239 0.239"/>
       </geometry>
     </collision>
     <!-- <xacro:default_inertial mass="2"/> -->
@@ -413,7 +413,7 @@
     <joint_properties damping=".0" friction=".0"/>
     <parent link="thigh_link_RL"/>
     <child link="shank_link_RL"/>
-    <origin rpy="0 0 0" xyz="0.2 0 0"/>
+    <origin rpy="0 0 0" xyz="0.045 0 0"/>
   </joint>
   <link name="foot_link_RL">
     <contact>
@@ -426,7 +426,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.0"/>
+        <sphere radius="3e-6"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -435,18 +435,18 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.03"/>
+        <sphere radius="3e-6"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.1"/>
+      <mass value="0.01"/>
       <inertia ixx="0.000025" ixy="0" ixz="0" iyy="0.000025" iyz="0" izz="0.000025"/>
     </inertial>
   </link>
   <joint name="foot_RL" type="fixed">
     <parent link="shank_link_RL"/>
     <child link="foot_link_RL"/>
-    <origin xyz="0.23 0 0"/>
+    <origin xyz="0.055 0 0"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
 
@@ -456,14 +456,14 @@
       <lateral_friction value="1"/>
     </contact>
     <inertial>
-      <origin rpy="0 0 0" xyz="0.04 0 0"/>
-      <mass value="2"/>
+      <origin rpy="0 0 0" xyz="0.0004 0 0"/>
+      <mass value="0.001"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_hip.STL"/>
+        <mesh filename="meshes/leg_fr_hip.STL" scale="0.01 0.01 0.3"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -472,7 +472,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_hip.STL"/>
+        <mesh filename="meshes/leg_fr_hip.STL" scale="0.01 0.01 0.3"/>
       </geometry>
     </collision>
     <!-- <xacro:default_inertial mass="2"/> -->
@@ -483,21 +483,21 @@
     <joint_properties damping=".0" friction=".0"/>
     <parent link="base_link"/>
     <child link="hip_link_RR"/>
-    <origin rpy="1.57075 1.57075 1.57075" xyz="-0.3 -0.21 0"/>
+    <origin rpy="1.57075 1.57075 1.57075" xyz="-0.0675 -0.05 0"/>
   </joint>
   <link name="thigh_link_RR">
     <contact>
       <lateral_friction value="1"/>
     </contact>
     <inertial>
-      <origin rpy="0 0 0" xyz="0.1 0 0"/>
-      <mass value="2"/>
+      <origin rpy="0 0 0" xyz="0.0225 0 0"/>
+      <mass value="0.05"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_thigh.STL"/>
+        <mesh filename="meshes/leg_fr_thigh.STL" scale="0.225 0.225 0.225"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -506,7 +506,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_thigh.STL"/>
+        <mesh filename="meshes/leg_fr_thigh.STL" scale="0.225 0.225 0.225"/>
       </geometry>
     </collision>
     <!-- <xacro:default_inertial mass="2"/> -->
@@ -517,21 +517,21 @@
     <joint_properties damping=".0" friction=".0"/>
     <parent link="hip_link_RR"/>
     <child link="thigh_link_RR"/>
-    <origin rpy="1.57075 0 0" xyz="0.08 0 0"/>
+    <origin rpy="1.57075 0 0" xyz="0.0008 0 0"/>
   </joint>
   <link name="shank_link_RR">
     <contact>
       <lateral_friction value="1"/>
     </contact>
     <inertial>
-      <origin rpy="0 0 0" xyz="0.11 0 0"/>
-      <mass value="2"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
+      <mass value="0.05"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_shank.STL"/>
+        <mesh filename="meshes/leg_fr_shank.STL" scale="0.239 0.239 0.239"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -540,7 +540,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/leg_fr_shank.STL"/>
+        <mesh filename="meshes/leg_fr_shank.STL" scale="0.239 0.239 0.239"/>
       </geometry>
     </collision>
     <!-- <xacro:default_inertial mass="2"/> -->
@@ -551,7 +551,7 @@
     <joint_properties damping=".0" friction=".0"/>
     <parent link="thigh_link_RR"/>
     <child link="shank_link_RR"/>
-    <origin rpy="0 0 0" xyz="0.2 0 0"/>
+    <origin rpy="0 0 0" xyz="0.045 0 0"/>
   </joint>
   <link name="foot_link_RR">
     <contact>
@@ -564,7 +564,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.0"/>
+        <sphere radius="3e-6"/>
       </geometry>
       <material name="honey">
         <color rgba="0.99 0.89 0.65 1"/>
@@ -573,18 +573,18 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.03"/>
+        <sphere radius="3e-6"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.1"/>
+      <mass value="0.01"/>
       <inertia ixx="0.000025" ixy="0" ixz="0" iyy="0.000025" iyz="0" izz="0.000025"/>
     </inertial>
   </link>
   <joint name="foot_RR" type="fixed">
     <parent link="shank_link_RR"/>
     <child link="foot_link_RR"/>
-    <origin xyz="0.23 0 0"/>
+    <origin xyz="0.055 0 0"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
 </robot>

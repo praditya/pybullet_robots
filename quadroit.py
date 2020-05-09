@@ -19,7 +19,8 @@ quadruped = p.loadURDF("quadroit/quadv1.urdf",[0,0,.5],[0,0,0.5,0], flags = urdf
 #enable collision between lower legs
 
 for j in range (p.getNumJoints(quadruped)):
-		print(p.getJointInfo(quadruped,j))
+    print(p.getJointInfo(quadruped,j))
+    # print(p.getDynamicsInfo(quadruped,j))
 
 #2,5,8 and 11 are the lower legs
 lower_legs = [2,5,8,11]
@@ -53,22 +54,37 @@ for i in range (4):
         jointOffsets.append(dir_flag*1.57)
 
 maxForceId = p.addUserDebugParameter("maxForce",0,500,100)
-restitution_coeff = 0.2
-
+restitutionId = p.addUserDebugParameter("restitution",0,1,0.2)
+restitutionThresholdId = p.addUserDebugParameter("res. vel. thres",0,100,100)
+p.getCameraImage(480,320)
+p.setRealTimeSimulation(1)
+# while(1):
 for j in range (p.getNumJoints(quadruped)):
-        p.changeDynamics(quadruped,j,linearDamping=10, angularDamping=0)
-        p.changeDynamics(plane, -1, restitution=restitution_coeff)
-        p.changeDynamics(quadruped, j, restitution=restitution_coeff)
+        restitution = p.readUserDebugParameter(restitutionId)
+        restitutionThreshold = p.readUserDebugParameter(restitutionThresholdId)
+        p.setPhysicsEngineParameter(restitutionVelocityThreshold = restitutionThreshold)
+        p.changeDynamics(quadruped,j,linearDamping=0, angularDamping=0)
+        p.changeDynamics(plane, -1, restitution=restitution)
+        p.changeDynamics(quadruped, j, restitution=restitution)
+        p.changeDynamics(plane, -1, lateralFriction=1)
+        p.changeDynamics(quadruped,j,lateralFriction=1)
         info = p.getJointInfo(quadruped,j)
         #print(info)
         jointName = info[1]
         jointType = info[2]
         if (jointType==p.JOINT_PRISMATIC or jointType==p.JOINT_REVOLUTE):
                 jointIds.append(j)
+        if (jointType==p.JOINT_FIXED):
+                p.changeDynamics(quadruped,j,lateralFriction=1)
+                # restitutionThreshold = p.readUserDebugParameter(restitutionThresholdId)
+                # p.changeDynamics(plane, -1, restitution=restitution)
+                p.changeDynamics(quadruped,j,rollingFriction=0.2)
+                p.changeDynamics(quadruped,j,spinningFriction=0.2)  
+                p.changeDynamics(quadruped,j,contactDamping=1000,contactStiffness=0)    
 
 		
-p.getCameraImage(480,320)
-p.setRealTimeSimulation(0)
+# p.getCameraImage(480,320)
+# p.setRealTimeSimulation(1)
 
 joints=[]
 
@@ -76,12 +92,12 @@ joints=[]
 # pose input
 # targetPos = float(joints[j])
 
-motion1 = instincts['wkL']
+motion1 = instincts['trL']
 lineiter = iter(motion1.splitlines())
 next(lineiter)
-dof_ord = [0,0,4,0,1,5,0,2,6,0,3,7]
+dof_ord = [0,0,4,0,1,5,0,3,7,0,2,6]
 
-for i in range(100):
+for i in range(10):
     print(i)
     maxForce = p.readUserDebugParameter(maxForceId)
     lineiter = iter(motion1.splitlines())
@@ -108,7 +124,7 @@ for i in range(100):
             #print("num points=",len(pts))
             #for pt in pts:
             #	print(pt[9])
-        time.sleep(1./100.)
+        time.sleep(1./200.)
     
     # joints=[]
 # index = 0
