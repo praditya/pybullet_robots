@@ -7,15 +7,25 @@ import sys
 sys.path.append('/media/aditya/Work/THESIS/MT_Thesis/Quadruped/Pybullet/pybullet_robots/data/quadroit')
 from Instinct import *
 
-p.connect(p.GUI)
-plane = p.loadURDF("plane.urdf")
-p.setGravity(0,0,-9.8)
+import pybullet_data
+client = p.connect(p.GUI)
+p.setGravity(0,0,-9.8, physicsClientId=client)
+
+p.setAdditionalSearchPath(pybullet_data.getDataPath())
+
+
+# plane = p.loadURDF("plane.urdf")
+# stadium = p.loadSDF("stadium.sdf")
+plane = p.loadURDF("samurai.urdf")
 p.setTimeStep(1./500)
-#p.setDefaultContactERP(0)
+# p.setDefaultContactERP(0)
 #urdfFlags = p.URDF_USE_SELF_COLLISION+p.URDF_USE_SELF_COLLISION_EXCLUDE_ALL_PARENTS 
 urdfFlags = p.URDF_USE_SELF_COLLISION
 quadruped = p.loadURDF("quadroit/quadv1.urdf",[0,0,.5],[0,0,0.5,0], flags = urdfFlags,useFixedBase=False)
 
+
+# for _ in range(100000): 
+#     p.stepSimulation()
 #enable collision between lower legs
 
 for j in range (p.getNumJoints(quadruped)):
@@ -53,8 +63,8 @@ for i in range (4):
             dir_flag=-1
         jointOffsets.append(dir_flag*1.57)
 
-maxForceId = p.addUserDebugParameter("maxForce",0,500,100)
-restitutionId = p.addUserDebugParameter("restitution",0,1,0.2)
+maxForceId = p.addUserDebugParameter("maxForce",0,500,200)
+restitutionId = p.addUserDebugParameter("restitution",0,1,0.1)
 restitutionThresholdId = p.addUserDebugParameter("res. vel. thres",0,100,100)
 p.getCameraImage(480,320)
 p.setRealTimeSimulation(1)
@@ -66,7 +76,7 @@ for j in range (p.getNumJoints(quadruped)):
         p.changeDynamics(quadruped,j,linearDamping=0, angularDamping=0)
         p.changeDynamics(plane, -1, restitution=restitution)
         p.changeDynamics(quadruped, j, restitution=restitution)
-        p.changeDynamics(plane, -1, lateralFriction=1)
+        p.changeDynamics(plane, -1, lateralFriction=0.5)
         p.changeDynamics(quadruped,j,lateralFriction=1)
         info = p.getJointInfo(quadruped,j)
         #print(info)
@@ -78,8 +88,8 @@ for j in range (p.getNumJoints(quadruped)):
                 p.changeDynamics(quadruped,j,lateralFriction=1)
                 # restitutionThreshold = p.readUserDebugParameter(restitutionThresholdId)
                 # p.changeDynamics(plane, -1, restitution=restitution)
-                p.changeDynamics(quadruped,j,rollingFriction=0.2)
-                p.changeDynamics(quadruped,j,spinningFriction=0.2)  
+                p.changeDynamics(quadruped,j,rollingFriction=0.5)
+                p.changeDynamics(quadruped,j,spinningFriction=0.5)  
                 p.changeDynamics(quadruped,j,contactDamping=1000,contactStiffness=0)    
 
 		
@@ -92,7 +102,7 @@ joints=[]
 # pose input
 # targetPos = float(joints[j])
 
-motion1 = instincts['wkL']
+motion1 = instincts['wk']
 lineiter = iter(motion1.splitlines())
 next(lineiter)
 dof_ord = [0,0,4,0,1,5,0,3,7,0,2,6]
@@ -124,7 +134,7 @@ for i in range(100):
             #print("num points=",len(pts))
             #for pt in pts:
             #	print(pt[9])
-        time.sleep(1./200.)
+        time.sleep(1./500.)
     
     # joints=[]
 # index = 0
