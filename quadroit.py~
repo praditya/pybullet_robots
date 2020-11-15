@@ -29,7 +29,7 @@ for j in range (p.getNumJoints(quadruped)):
     print(p.getJointInfo(quadruped,j))
     # print(p.getDynamicsInfo(quadruped,j))
 
-#3,7, 11 and 15 are the lower legs
+#2,5,8 and 11 are the lower legs
 # lower_legs = [2,5,8,11]
 lower_legs = [3,7,11,15]
 for l0 in lower_legs:
